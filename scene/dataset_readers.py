@@ -47,11 +47,11 @@ def getNerfppNorm(cam_info):
         cam_centers = np.hstack(cam_centers)
         avg_cam_center = np.mean(cam_centers, axis=1, keepdims=True)
         center = avg_cam_center
-        dist = np.linalg.norm(cam_centers - center, axis=0, keepdims=True)
+        dist = np.linalg.norm(cam_centers - center, axis=0, keepdims=True) #TODO 计算（cam_centers - center）中每个向量的长度
         diagonal = np.max(dist)
         return center.flatten(), diagonal
 
-    cam_centers = []
+    cam_centers = [] #cam_centers at world coordinate
 
     for cam in cam_info:
         W2C = getWorld2View2(cam.R, cam.T)
